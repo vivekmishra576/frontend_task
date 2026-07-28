@@ -1,0 +1,94 @@
+.header-navbar {
+  height: 64px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  height: 32px;
+  width: auto;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-bell-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.bell-badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.avatar-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #fde047;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fef08a;
+}
+
+.avatar-initials {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #854d0e;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.user-role {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  .user-text {
+    display: none;
+  }
+}

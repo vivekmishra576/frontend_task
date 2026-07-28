@@ -1,0 +1,219 @@
+.figma-login-container {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f3f7fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.figma-login-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Left Illustration Column */
+.figma-login-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-mascot-image {
+  max-width: 440px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right Login Card Column */
+.figma-login-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.figma-login-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border: 1px solid #dce6f6;
+  border-radius: 16px;
+  padding: 48px 44px;
+  box-shadow: 0 10px 30px rgba(67, 120, 240, 0.04);
+  box-sizing: border-box;
+}
+
+.login-brand-header {
+  margin-bottom: 28px;
+}
+
+.preproute-logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.login-heading {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #334155;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.login-subtext {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0 0 32px 0;
+  font-weight: 400;
+}
+
+.login-api-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+/* Form Fields */
+.figma-login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.form-field-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-field-input::placeholder {
+  color: #9ca3af;
+}
+
+.form-field-input:focus {
+  border-color: #548af7;
+  box-shadow: 0 0 0 3.5px rgba(84, 138, 247, 0.15);
+}
+
+.field-error .form-field-input {
+  border-color: #ef4444;
+}
+
+.field-error .form-field-input:focus {
+  box-shadow: 0 0 0 3.5px rgba(239, 68, 68, 0.15);
+}
+
+.error-text-msg {
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.forgot-password-row {
+  display: flex;
+  margin-top: -4px;
+  margin-bottom: 24px;
+}
+
+.forgot-password-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #548af7;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.forgot-password-link:hover {
+  color: #3b6cd4;
+  text-decoration: underline;
+}
+
+/* Submit Button */
+.figma-login-btn {
+  width: 100%;
+  background-color: #548af7;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 13px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figma-login-btn:hover:not(:disabled) {
+  background-color: #4175e3;
+}
+
+.figma-login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .figma-login-wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .figma-login-left {
+    display: none;
+  }
+  .figma-login-right {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,229 @@
+.layout-root {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.layout-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding: 24px 36px;
+  max-width: 1300px;
+}
+
+.breadcrumb-bar {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+.active-breadcrumb {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 32px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.tab-pill-bar {
+  display: inline-flex;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: #eef2ff;
+  color: #4f46e5;
+  font-weight: 700;
+}
+
+.error-alert-banner {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.create-test-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder, .form-select option[value=""] {
+  color: #94a3b8;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: #4f46e5;
+}
+
+.radio-group-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 46px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4f46e5;
+  cursor: pointer;
+}
+
+/* Marking Scheme */
+.marking-scheme-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.marking-inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.small-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.small-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.btn-cancel {
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f8fafc;
+  color: #4f46e5;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f1f5f9;
+}
+
+.btn-next {
+  padding: 12px 36px;
+  border-radius: 10px;
+  border: none;
+  background-color: #6c85fd;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-next:hover {
+  background-color: #5570f1;
+}
+
+@media (max-width: 900px) {
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+  .marking-inputs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
