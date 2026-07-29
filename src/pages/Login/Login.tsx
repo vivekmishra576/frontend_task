@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth';
 import loginImage from '../../assests/loginimage.png';
@@ -17,6 +17,13 @@ export const Login: React.FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const [apiError, setApiError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // Check if user is already authenticated on component mount
+  useEffect(() => {
+    if (authService.isAuthenticated()) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
