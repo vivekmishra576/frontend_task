@@ -67,7 +67,6 @@ export const Preview: React.FC = () => {
 
   const questionCount = test?.total_questions || (test && Array.isArray(test.questions) ? test.questions.length : 50);
 
-  // Generate 24-hour time options
   const generateTimeOptions = () => {
     const times = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -87,11 +86,7 @@ export const Preview: React.FC = () => {
       {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage('')} />
       )}
-      
-      {/* 1. Main Navigation Sidebar */}
       <Sidebar collapsed={true} />
-
-      {/* 2. Inner Question Creation Drawer */}
       <div className={`questions-drawer ${isDrawerOpen ? 'open' : 'closed'}`}>
         <div className="drawer-header">
           <span className="drawer-title">Question creation</span>
@@ -121,8 +116,6 @@ export const Preview: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* 3. Main Content Body */}
       <div className="layout-body">
         <Navbar showLogo={true} />
 
@@ -139,8 +132,6 @@ export const Preview: React.FC = () => {
               <CheckCircle2 size={14} color="#10b981" /> All {questionCount} Questions done
             </span>
           </div>
-
-          {/* Test Card Details Box */}
           <div className="test-details-card">
             <div className="details-card-top">
               <span className="chapter-pill">{test?.type || 'Chapter Wise'}</span>
@@ -204,8 +195,6 @@ export const Preview: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Publish Toggle Bar */}
           <div className="publish-tabs-bar">
             <button
               className={`publish-tab-btn ${publishTab === 'now' ? 'active' : ''}`}
@@ -220,8 +209,6 @@ export const Preview: React.FC = () => {
               Schedule Publish
             </button>
           </div>
-
-          {/* Schedule Date and Time Section */}
           {publishTab === 'schedule' && (
             <div className="schedule-section margin-bottom-24">
               <h4 className="section-heading-title">Select Date and Time</h4>
@@ -255,8 +242,6 @@ export const Preview: React.FC = () => {
               </div>
             </div>
           )}
-
-          {/* Live Until Section */}
           <div className="live-until-section">
             <h4 className="live-until-title">Live Until</h4>
             <p className="live-until-sub">Choose how long this test should remain available on the platform.</p>
@@ -311,8 +296,6 @@ export const Preview: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Footer Actions */}
           <div className="form-bottom-actions">
             <button
               type="button"

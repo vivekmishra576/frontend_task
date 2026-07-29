@@ -18,7 +18,6 @@
   width: 100%;
 }
 
-/* Sizes */
 .btn-sm {
   padding: 6px 12px;
   font-size: 0.85rem;
@@ -34,7 +33,6 @@
   font-size: 1.05rem;
 }
 
-/* Variants */
 .btn-primary {
   background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
   color: #ffffff;

@@ -87,7 +87,6 @@
   margin-bottom: 20px;
 }
 
-/* Form Fields */
 .figma-login-form {
   display: flex;
   flex-direction: column;
@@ -163,7 +162,6 @@
   text-decoration: underline;
 }
 
-/* Submit Button */
 .figma-login-btn {
   width: 100%;
   background-color: #548af7;
@@ -204,7 +202,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .figma-login-wrapper {
     flex-direction: column;

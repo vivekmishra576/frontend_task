@@ -54,7 +54,6 @@ export const Login: React.FC = () => {
   return (
     <div className="figma-login-container">
       <div className="figma-login-wrapper">
-        {/* Left Column: Mascot / Illustration */}
         <div className="figma-login-left">
           <img
             src={loginImage}
@@ -62,25 +61,15 @@ export const Login: React.FC = () => {
             className="login-mascot-image"
           />
         </div>
-
-        {/* Right Column: Login Card */}
         <div className="figma-login-right">
           <div className="figma-login-card">
-            {/* Logo */}
             <div className="login-brand-header">
               <img src={logoImage} alt="PrepRoute Logo" className="preproute-logo-img" />
             </div>
-
-            {/* Title & Subtitle */}
             <h1 className="login-heading">Login</h1>
             <p className="login-subtext">Use your company provided Login credentials</p>
-
-            {/* API Error Banner */}
             {apiError && <div className="login-api-error">{apiError}</div>}
-
-            {/* Form */}
             <form onSubmit={handleSubmit} className="figma-login-form">
-              {/* User ID Field */}
               <div className={`form-field-group ${userIdError ? 'field-error' : ''}`}>
                 <label htmlFor="userIdInput" className="form-field-label">
                   User ID
@@ -98,8 +87,6 @@ export const Login: React.FC = () => {
                 />
                 {userIdError && <span className="error-text-msg">{userIdError}</span>}
               </div>
-
-              {/* Password Field */}
               <div className={`form-field-group ${passwordError ? 'field-error' : ''}`}>
                 <label htmlFor="passwordInput" className="form-field-label">
                   Password
@@ -117,8 +104,6 @@ export const Login: React.FC = () => {
                 />
                 {passwordError && <span className="error-text-msg">{passwordError}</span>}
               </div>
-
-              {/* Forgot Password Link */}
               <div className="forgot-password-row">
                 <a
                   href="#forgot"
@@ -131,8 +116,6 @@ export const Login: React.FC = () => {
                   Forgot password?
                 </a>
               </div>
-
-              {/* Submit Button */}
               <button
                 type="submit"
                 className="figma-login-btn"

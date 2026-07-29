@@ -81,7 +81,6 @@
   text-decoration: underline;
 }
 
-/* Text Editor Toolbar */
 .editor-toolbar {
   display: flex;
   align-items: center;

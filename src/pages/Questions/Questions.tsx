@@ -204,11 +204,7 @@ export const Questions: React.FC = () => {
       {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage('')} />
       )}
-      
-      {/* 1. Main Navigation Sidebar - Collapsed on Questions Page */}
       <Sidebar collapsed={true} />
-
-      {/* 2. Inner Question Creation Drawer */}
       <div className={`questions-drawer ${isDrawerOpen ? 'open' : 'closed'}`}>
         <div className="drawer-header">
           <span className="drawer-title">Question creation</span>
@@ -253,8 +249,6 @@ export const Questions: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* 3. Main Body Content */}
       <div className="layout-body">
         <Navbar showLogo={true} />
 
@@ -274,8 +268,6 @@ export const Questions: React.FC = () => {
           </div>
 
           {errorMessage && <div className="error-alert-banner">{errorMessage}</div>}
-
-          {/* Test Overview Card */}
           <div className="test-details-card margin-bottom-24">
             <div className="details-card-top">
               <span className="chapter-pill">{testData?.type }</span>
@@ -339,8 +331,6 @@ export const Questions: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Question Index Bar */}
           <div className="question-index-row">
             <h2 className="question-count-title">
               Question {currentIndex + 1}<span className="total-slash">/{totalQCount}</span>
@@ -363,10 +353,7 @@ export const Questions: React.FC = () => {
             <Trash2 size={15} color="#ef4444" />
             <span>Delete All Edits</span>
           </button>
-
-          {/* Question Form Card */}
           <div className="form-card">
-            {/* Formatting Toolbar */}
             <div className="editor-toolbar">
               <button className="toolbar-btn"><Italic size={14} /></button>
               <button className="toolbar-btn"><Bold size={14} /></button>

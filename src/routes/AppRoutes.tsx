@@ -68,7 +68,6 @@ export const AppRoutes: React.FC = () => {
         }
       />
 
-      {/* Default Catch-all */}
       <Route
         path="*"
         element={
