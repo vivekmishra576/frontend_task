@@ -93,6 +93,7 @@ export interface Question {
   topic_id?: string;
   sub_topic_id?: string;
   media_url?: string;
+  subject?: string;
 }
 
 export interface ApiResponse<T> {

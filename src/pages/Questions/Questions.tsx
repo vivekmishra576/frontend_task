@@ -44,7 +44,7 @@ export const Questions: React.FC = () => {
   const [option4, setOption4] = useState('');
   const [correctOption, setCorrectOption] = useState<'option1' | 'option2' | 'option3' | 'option4'>('option1');
   const [solution, setSolution] = useState('');
-  const [difficulty, setDifficulty] = useState('Easy');
+  const [difficulty, setDifficulty] = useState('easy');
   const [topic, setTopic] = useState('');
   const [subTopic, setSubTopic] = useState('');
 
@@ -84,7 +84,7 @@ export const Questions: React.FC = () => {
     setOption4(q.option4 || '');
     setCorrectOption((q.correct_option as any) || 'option1');
     setSolution(q.explanation || '');
-    setDifficulty(q.difficulty || 'Easy');
+    setDifficulty(q.difficulty || 'easy');
   };
 
   const saveCurrentQuestion = () => {
@@ -99,6 +99,7 @@ export const Questions: React.FC = () => {
       explanation: solution,
       difficulty,
       test_id: id,
+      subject: testData?.subject,
     };
 
     const updated = [...questionsList];
@@ -265,7 +266,7 @@ export const Questions: React.FC = () => {
           {/* Test Overview Card */}
           <div className="test-details-card margin-bottom-24">
             <div className="details-card-top">
-              <span className="chapter-pill">{testData?.type || 'Chapter Wise'}</span>
+              <span className="chapter-pill">{testData?.type }</span>
               <button
                 className="edit-pencil-btn"
                 onClick={() => navigate(`/tests/${id}/edit`)}
@@ -275,8 +276,8 @@ export const Questions: React.FC = () => {
             </div>
 
             <div className="chapter-header-row">
-              <h3 className="chapter-name">{testData?.name || 'Chapter 1'}</h3>
-              <span className="easy-badge">{testData?.difficulty || 'Easy'}</span>
+              <h3 className="chapter-name">{testData?.name}</h3>
+              <span className="easy-badge">{testData?.difficulty}</span>
             </div>
 
             <div className="meta-details-grid">
@@ -284,7 +285,7 @@ export const Questions: React.FC = () => {
                 <div className="meta-line">
                   <span className="meta-key">Subject</span>
                   <span className="meta-colon">:</span>
-                  <span className="meta-val">{testData?.subject || 'English'}</span>
+                  <span className="meta-val">{testData?.subject}</span>
                 </div>
 
                 <div className="meta-line">
@@ -321,7 +322,7 @@ export const Questions: React.FC = () => {
                 <div className="metric-divider"></div>
                 <div className="metric-cell">
                   <Award size={15} color="#64748b" />
-                  <span>{testData?.total_marks || 250} Marks</span>
+                  <span>{testData?.total_marks} Marks</span>
                 </div>
               </div>
             </div>
@@ -473,10 +474,10 @@ export const Questions: React.FC = () => {
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value)}
                 >
-                  <option value="Easy">Select from Drop-down</option>
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Difficult">Difficult</option>
+                  <option value="">Select from Drop-down</option>
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
                 </select>
               </div>
 
