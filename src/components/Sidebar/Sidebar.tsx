@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { LayoutDashboard, PenTool, ClipboardList } from 'lucide-react';
 import logoImage from '../../assests/logo.png';
 import './Sidebar.css';
@@ -9,6 +9,11 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
+  const location = useLocation();
+  
+  // Check if current path is in test creation flow
+  const isTestCreationActive = location.pathname.startsWith('/tests');
+
   return (
     <aside className={`sidebar-container ${collapsed ? 'is-collapsed' : ''}`}>
       <div className="sidebar-logo-box">
@@ -26,7 +31,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
 
         <NavLink
           to="/tests/create"
-          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
+          className={`sidebar-item ${isTestCreationActive ? 'active' : ''}`}
         >
           <PenTool size={18} strokeWidth={2} />
           <span>Test Creation</span>

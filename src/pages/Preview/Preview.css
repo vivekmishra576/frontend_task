@@ -320,8 +320,21 @@
   align-items: center;
 }
 
+.picker-input-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
 .picker-icon {
   position: absolute;
   right: 14px;
   pointer-events: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
 }

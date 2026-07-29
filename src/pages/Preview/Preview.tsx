@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Toast from '../../components/Toast/Toast';
 import testService from '../../services/test';
 import { Test } from '../../types';
 import {
@@ -21,7 +22,7 @@ export const Preview: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const [test, setTest] = useState<Test | null>(null);
-  const [publishTab, setPublishTab] = useState<'now' | 'schedule'>('schedule');
+  const [publishTab, setPublishTab] = useState<'now' | 'schedule'>('now');
 
   const [scheduleDate, setScheduleDate] = useState('');
   const [scheduleTime, setScheduleTime] = useState('');
@@ -32,6 +33,7 @@ export const Preview: React.FC = () => {
 
   const [isPublishing, setIsPublishing] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   useEffect(() => {
@@ -52,7 +54,10 @@ export const Preview: React.FC = () => {
     try {
       setIsPublishing(true);
       await testService.publishTest(id);
-      navigate('/dashboard');
+      setToastMessage('Test published successfully!');
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1500);
     } catch (err: any) {
       setErrorMessage(err.response?.data?.message || err.message || 'Publishing failed');
     } finally {
@@ -62,8 +67,27 @@ export const Preview: React.FC = () => {
 
   const questionCount = test?.total_questions || (test && Array.isArray(test.questions) ? test.questions.length : 50);
 
+  // Generate 24-hour time options
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 30) {
+        const hourStr = hour.toString().padStart(2, '0');
+        const minuteStr = minute.toString().padStart(2, '0');
+        times.push(`${hourStr}:${minuteStr}`);
+      }
+    }
+    return times;
+  };
+
+  const timeOptions = generateTimeOptions();
+
   return (
     <div className="layout-root">
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+      )}
+      
       {/* 1. Main Navigation Sidebar */}
       <Sidebar collapsed={true} />
 
@@ -204,7 +228,7 @@ export const Preview: React.FC = () => {
               <div className="date-time-pickers-row">
                 <div className="picker-input-wrapper">
                   <input
-                    type="text"
+                    type="date"
                     className="form-input"
                     placeholder="Select Date"
                     value={scheduleDate}
@@ -214,13 +238,18 @@ export const Preview: React.FC = () => {
                 </div>
 
                 <div className="picker-input-wrapper">
-                  <input
-                    type="text"
+                  <select
                     className="form-input"
-                    placeholder="Select Time"
                     value={scheduleTime}
                     onChange={(e) => setScheduleTime(e.target.value)}
-                  />
+                  >
+                    <option value="">Select Time</option>
+                    {timeOptions.map((time) => (
+                      <option key={time} value={time}>
+                        {time}
+                      </option>
+                    ))}
+                  </select>
                   <Clock size={16} className="picker-icon" color="#94a3b8" />
                 </div>
               </div>
@@ -256,7 +285,7 @@ export const Preview: React.FC = () => {
             <div className="date-time-pickers-row">
               <div className="picker-input-wrapper">
                 <input
-                  type="text"
+                  type="date"
                   className="form-input"
                   placeholder="Select End Date"
                   value={endDate}
@@ -266,13 +295,18 @@ export const Preview: React.FC = () => {
               </div>
 
               <div className="picker-input-wrapper">
-                <input
-                  type="text"
+                <select
                   className="form-input"
-                  placeholder="Select End Time"
                   value={endTime}
                   onChange={(e) => setEndTime(e.target.value)}
-                />
+                >
+                  <option value="">Select End Time</option>
+                  {timeOptions.map((time) => (
+                    <option key={time} value={time}>
+                      {time}
+                    </option>
+                  ))}
+                </select>
                 <Clock size={16} className="picker-icon" color="#94a3b8" />
               </div>
             </div>

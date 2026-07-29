@@ -83,14 +83,21 @@
 }
 
 .sidebar-item.active {
-  background-color: transparent;
-  color: #1f2937;
+  background-color: #eff6ff;
+  color: #2563eb;
   font-weight: 600;
+  border-left: 3px solid #2563eb;
+  padding-left: 13px;
 }
 
 .sidebar-item.active svg {
-  color: #1f2937;
+  color: #2563eb;
   stroke-width: 2.5;
+}
+
+.sidebar-container.is-collapsed .sidebar-item.active {
+  border-left: 3px solid #2563eb;
+  padding-left: 9px;
 }
 
 .sidebar-item.disabled {

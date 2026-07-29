@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Toast from '../../components/Toast/Toast';
 import testService from '../../services/test';
 import { Subject, Topic, SubTopic, CreateTestPayload } from '../../types';
 import './CreateTest.css';
@@ -31,6 +32,7 @@ export const CreateTest: React.FC = () => {
 
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -42,14 +44,44 @@ export const CreateTest: React.FC = () => {
           const testData = await testService.getTestById(id);
           if (testData) {
             setName(testData.name || '');
-            setSubject(testData.subject || '');
             setTestTypeTab(testData.type || 'chapterwise');
-            if (testData.topics && testData.topics.length > 0) {
-              setSelectedTopic(testData.topics[0]);
+            
+            // Find subject ID by matching the subject name
+            const subjectName = testData.subject || '';
+            const matchedSubject = subs.find(s => s.name === subjectName);
+            
+            if (matchedSubject) {
+              setSubject(matchedSubject.id);
+              
+              // Fetch topics using the subject ID
+              const topics = await testService.getTopicsBySubject(matchedSubject.id);
+              setTopicsList(topics);
+              
+              // Find and set topic ID by matching topic name
+              if (testData.topics && testData.topics.length > 0) {
+                const topicName = testData.topics[0];
+                const matchedTopic = topics.find(t => t.name === topicName);
+                
+                if (matchedTopic) {
+                  setSelectedTopic(matchedTopic.id);
+                  
+                  // Fetch sub-topics using the topic ID
+                  const subTopics = await testService.getSubTopicsByTopic(matchedTopic.id);
+                  setSubTopicsList(subTopics);
+                  
+                  // Find and set sub-topic ID by matching sub-topic name
+                  if (testData.sub_topics && testData.sub_topics.length > 0) {
+                    const subTopicName = testData.sub_topics[0];
+                    const matchedSubTopic = subTopics.find(st => st.name === subTopicName);
+                    
+                    if (matchedSubTopic) {
+                      setSelectedSubTopic(matchedSubTopic.id);
+                    }
+                  }
+                }
+              }
             }
-            if (testData.sub_topics && testData.sub_topics.length > 0) {
-              setSelectedSubTopic(testData.sub_topics[0]);
-            }
+            
             if (testData.difficulty) {
               const diffStr = testData.difficulty.toLowerCase();
               if (diffStr === 'easy') setDifficulty('Easy');
@@ -139,12 +171,18 @@ export const CreateTest: React.FC = () => {
       let res;
       if (isEditMode && id) {
         res = await testService.updateTest(id, payload);
+        setToastMessage('Test updated successfully!');
       } else {
         res = await testService.createTest(payload);
+        setToastMessage('Test created successfully!');
       }
 
       const testId = res?.id || id;
-      navigate(`/tests/${testId}/questions`);
+      
+      // Show toast briefly before navigation
+      setTimeout(() => {
+        navigate(`/tests/${testId}/questions`);
+      }, 1000);
     } catch (err: any) {
       setErrorMessage(err.response?.data?.message || err.message || 'Error saving test');
     } finally {
@@ -154,6 +192,10 @@ export const CreateTest: React.FC = () => {
 
   return (
     <div className="layout-root">
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+      )}
+      
       <Sidebar />
 
       <div className="layout-body">
@@ -166,14 +208,14 @@ export const CreateTest: React.FC = () => {
 
           <div className="form-card">
             <div className="tab-pill-bar">
-              {['Chapterwise', 'PYQ', 'Mock Test'].map((tab) => (
+              {['chapterwise', 'pyq', 'mocktest'].map((tab) => (
                 <button
                   key={tab}
                   type="button"
                   className={`tab-btn ${testTypeTab === tab ? 'active' : ''}`}
                   onClick={() => setTestTypeTab(tab)}
                 >
-                  {tab}
+                  {tab === 'chapterwise' ? 'Chapterwise' : tab === 'pyq' ? 'PYQ' : 'Mock Test'}
                 </button>
               ))}
             </div>

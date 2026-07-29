@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Toast from '../../components/Toast/Toast';
 import testService from '../../services/test';
 import questionService from '../../services/question';
 import { Question } from '../../types';
@@ -50,6 +51,7 @@ export const Questions: React.FC = () => {
 
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
     if (!id) return;
@@ -159,7 +161,10 @@ export const Questions: React.FC = () => {
         });
       }
       await testService.publishTest(id);
-      navigate('/dashboard');
+      setToastMessage('Test published successfully!');
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1500);
     } catch (err: any) {
       setErrorMessage(err.response?.data?.message || err.message || 'Error publishing test');
     } finally {
@@ -180,8 +185,11 @@ export const Questions: React.FC = () => {
           questions: qIds.length > 0 ? qIds : finalQuestions as any,
           total_questions: finalQuestions.length,
         });
+        setToastMessage('Questions added successfully!');
       }
-      navigate(`/tests/${id}/preview`);
+      setTimeout(() => {
+        navigate(`/tests/${id}/preview`);
+      }, 1000);
     } catch (err: any) {
       setErrorMessage(err.response?.data?.message || err.message || 'Error saving questions');
     } finally {
@@ -193,6 +201,10 @@ export const Questions: React.FC = () => {
 
   return (
     <div className="layout-root">
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+      )}
+      
       {/* 1. Main Navigation Sidebar - Collapsed on Questions Page */}
       <Sidebar collapsed={true} />
 
