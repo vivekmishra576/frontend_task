@@ -192,8 +192,8 @@ export const Questions: React.FC = () => {
 
   return (
     <div className="layout-root">
-      {/* 1. Main Navigation Sidebar */}
-      <Sidebar />
+      {/* 1. Main Navigation Sidebar - Collapsed on Questions Page */}
+      <Sidebar collapsed={true} />
 
       {/* 2. Inner Question Creation Drawer */}
       <div className={`questions-drawer ${isDrawerOpen ? 'open' : 'closed'}`}>
@@ -243,7 +243,7 @@ export const Questions: React.FC = () => {
 
       {/* 3. Main Body Content */}
       <div className="layout-body">
-        <Navbar hideLogo />
+        <Navbar showLogo={true} />
 
         <main className="page-content">
           <div className="questions-page-top-bar">

@@ -157,7 +157,7 @@ export const CreateTest: React.FC = () => {
       <Sidebar />
 
       <div className="layout-body">
-        <Navbar hideLogo />
+        <Navbar />
 
         <main className="page-content">
           <div className="breadcrumb-bar">

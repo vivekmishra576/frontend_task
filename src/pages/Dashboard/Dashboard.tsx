@@ -47,7 +47,7 @@ export const Dashboard: React.FC = () => {
       <Sidebar />
 
       <div className="layout-body">
-        <Navbar hideLogo />
+        <Navbar />
 
         <main className="page-content">
           <div className="dashboard-header-row">

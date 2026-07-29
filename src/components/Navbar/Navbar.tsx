@@ -5,10 +5,10 @@ import authService from '../../services/auth';
 import './Navbar.css';
 
 interface NavbarProps {
-  hideLogo?: boolean;
+  showLogo?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ hideLogo = false }) => {
+export const Navbar: React.FC<NavbarProps> = ({ showLogo = false }) => {
   const user = authService.getUser();
   const userName = user?.name || user?.userId || 'Alex Wando';
   const userRole = user?.role || 'Admin';
@@ -24,14 +24,14 @@ export const Navbar: React.FC<NavbarProps> = ({ hideLogo = false }) => {
   return (
     <header className="header-navbar">
       <div className="header-left">
-        {!hideLogo && (
+        {showLogo && (
           <img src={logoImage} alt="PrepRoute Logo" className="header-logo" />
         )}
       </div>
 
       <div className="header-right">
-        <button className="icon-bell-btn">
-          <Bell size={18} color="#64748b" />
+        <button className="icon-bell-btn" aria-label="Notifications">
+          <Bell size={20} color="#6b7280" />
           <span className="bell-badge-dot"></span>
         </button>
 
@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({ hideLogo = false }) => {
             <span className="user-title">{userName}</span>
             <span className="user-role">{userRole}</span>
           </div>
-          <ChevronDown size={14} color="#64748b" />
+          <ChevronDown size={18} color="#6b7280" />
         </div>
       </div>
     </header>

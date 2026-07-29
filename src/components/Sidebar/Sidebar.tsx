@@ -1,34 +1,40 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { TrendingUp, Edit3, ClipboardList } from 'lucide-react';
+import { LayoutDashboard, PenTool, ClipboardList } from 'lucide-react';
+import logoImage from '../../assests/logo.png';
 import './Sidebar.css';
 
 interface SidebarProps {
   collapsed?: boolean;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ collapsed = true }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
   return (
-    <aside className={`icon-sidebar ${collapsed ? 'is-collapsed' : ''}`}>
-      <nav className="icon-sidebar-menu">
+    <aside className={`sidebar-container ${collapsed ? 'is-collapsed' : ''}`}>
+      <div className="sidebar-logo-box">
+        <img src={logoImage} alt="PrepRoute Logo" className="sidebar-logo" />
+      </div>
+
+      <nav className="sidebar-menu">
         <NavLink
           to="/dashboard"
-          className={({ isActive }) => `icon-sidebar-item ${isActive ? 'active' : ''}`}
-          title="Dashboard"
+          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
         >
-          <TrendingUp size={18} />
+          <LayoutDashboard size={18} strokeWidth={2} />
+          <span>Dashboard</span>
         </NavLink>
 
         <NavLink
           to="/tests/create"
-          className={({ isActive }) => `icon-sidebar-item ${isActive ? 'active' : ''}`}
-          title="Test Creation"
+          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
         >
-          <Edit3 size={18} />
+          <PenTool size={18} strokeWidth={2} />
+          <span>Test Creation</span>
         </NavLink>
 
-        <div className="icon-sidebar-item disabled" title="Test Tracking">
-          <ClipboardList size={18} />
+        <div className="sidebar-item disabled">
+          <ClipboardList size={18} strokeWidth={2} />
+          <span>Test Tracking</span>
         </div>
       </nav>
     </aside>

@@ -65,7 +65,7 @@ export const Preview: React.FC = () => {
   return (
     <div className="layout-root">
       {/* 1. Main Navigation Sidebar */}
-      <Sidebar />
+      <Sidebar collapsed={true} />
 
       {/* 2. Inner Question Creation Drawer */}
       <div className={`questions-drawer ${isDrawerOpen ? 'open' : 'closed'}`}>
@@ -100,7 +100,7 @@ export const Preview: React.FC = () => {
 
       {/* 3. Main Content Body */}
       <div className="layout-body">
-        <Navbar hideLogo />
+        <Navbar showLogo={true} />
 
         <main className="page-content">
           <div className="breadcrumb-bar">
