@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logoImage from '../../assests/logo.png';
 import { Bell, ChevronDown, LogOut } from 'lucide-react';
 import authService from '../../services/auth';
 import './Navbar.css';
@@ -54,11 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ showLogo = false }) => {
 
   return (
     <header className="header-navbar">
-      <div className="header-left">
-        {/* {showLogo && (
-          <img src={logoImage} alt="PrepRoute Logo" className="header-logo" />
-        )} */}
-      </div>
+      <div className="header-left"/>
 
       <div className="header-right">
         <button className="icon-bell-btn" aria-label="Notifications">
