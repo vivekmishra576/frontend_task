@@ -69,6 +69,7 @@ export const Login: React.FC = () => {
           />
         </div>
         <div className="figma-login-right">
+          <div className="form-container">
           <div className="figma-login-card">
             <div className="login-brand-header">
               <img src={logoImage} alt="PrepRoute Logo" className="preproute-logo-img" />
@@ -131,6 +132,7 @@ export const Login: React.FC = () => {
                 {isLoading ? <span className="btn-spinner" /> : 'Login'}
               </button>
             </form>
+          </div>
           </div>
         </div>
       </div>
