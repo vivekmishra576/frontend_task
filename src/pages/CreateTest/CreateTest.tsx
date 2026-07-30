@@ -358,11 +358,10 @@ export const CreateTest: React.FC = () => {
                     <label className="small-label">No of Questions</label>
                     <input
                       type="number"
-                      className="form-input"
+                      className="form-input inputWidth"
                       placeholder="Ex: 10 Ques"
                       value={noOfQuestions}
                       onChange={(e) => setNoOfQuestions(e.target.value ? Number(e.target.value) : '')}
-                      style={{width: "270px"}}
                     />
                   </div>
 
@@ -370,11 +369,10 @@ export const CreateTest: React.FC = () => {
                     <label className="small-label">Total Marks</label>
                     <input
                       type="number"
-                      className="form-input"
+                      className="form-input inputWidth"
                       placeholder="Ex:250 Marks"
                       value={totalMarks}
                       onChange={(e) => setTotalMarks(e.target.value ? Number(e.target.value) : '')}
-                      style={{width: "270px"}}
                     />
                   </div>
                 </div>

@@ -176,6 +176,35 @@
   line-height: 1;
 }
 
+@media (max-width: 768px) {
+  .header-navbar {
+    padding: 0 16px;
+    height: 64px;
+  }
+
+  .header-logo {
+    height: 28px;
+  }
+
+  .icon-bell-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .avatar-box {
+    width: 38px;
+    height: 38px;
+  }
+
+  .avatar-initials {
+    font-size: 0.8rem;
+  }
+
+  .header-right {
+    gap: 12px;
+  }
+}
+
 @media (max-width: 640px) {
   .user-text {
     display: none;
@@ -183,5 +212,51 @@
   
   .header-navbar {
     padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-navbar {
+    padding: 0 12px;
+    height: 60px;
+  }
+
+  .header-logo {
+    height: 24px;
+  }
+
+  .icon-bell-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .avatar-box {
+    width: 36px;
+    height: 36px;
+  }
+
+  .avatar-initials {
+    font-size: 0.75rem;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .bell-badge-dot {
+    width: 8px;
+    height: 8px;
+    top: 4px;
+    right: 4px;
+  }
+
+  .user-dropdown {
+    min-width: 160px;
+    right: -12px;
+  }
+
+  .dropdown-item {
+    padding: 10px 14px;
+    font-size: 0.875rem;
   }
 }
