@@ -12,7 +12,6 @@ import {
   BookOpen,
   Award,
   Calendar,
-  ChevronLeft,
   ChevronDown,
   ChevronsRight,
   ChevronsLeft
@@ -105,8 +104,8 @@ export const Preview: React.FC = () => {
             <span className="total-q-label">Total Questions . {questionCount}</span>
 
             <div className="drawer-q-list">
-              {Array.from({ length: 6 }).map((_, idx) => (
-                <div key={idx} className="drawer-q-item">
+              {Array.from({ length: questionCount }).map((_, idx) => (
+                <div key={idx} className="drawer-q-item active-q">
                   <div className="q-item-left">
                     <CheckCircle2 size={14} color="#10b981" />
                     <span>Question {idx + 1}</span>

@@ -223,12 +223,11 @@ export const Questions: React.FC = () => {
             <span className="total-q-label">Total Questions . {totalQCount}</span>
 
             <div className="drawer-q-list">
-              {Array.from({ length: 6 }).map((_, idx) => {
-                const isAdded = idx < Math.max(questionsList.length, currentIndex + 1);
+              {Array.from({ length: Math.max(questionsList.length, currentIndex + 1) }).map((_, idx) => {
                 return (
                   <div
                     key={idx}
-                    className={`drawer-q-item ${isAdded ? 'active-q' : 'empty-q'}`}
+                    className="drawer-q-item active-q"
                     onClick={() => {
                       saveCurrentQuestion();
                       setCurrentIndex(idx);
@@ -236,11 +235,7 @@ export const Questions: React.FC = () => {
                     }}
                   >
                     <div className="q-item-left">
-                      {isAdded ? (
-                        <CheckCircle2 size={14} color="#10b981" />
-                      ) : (
-                        <span className="q-gray-dot"></span>
-                      )}
+                      <CheckCircle2 size={14} color="#10b981" />
                       <span>Question {idx + 1}</span>
                     </div>
                     <ChevronsRight size={14} color="#94a3b8" />
