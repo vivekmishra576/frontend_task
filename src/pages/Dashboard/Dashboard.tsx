@@ -52,7 +52,7 @@ export const Dashboard: React.FC = () => {
         <main className="page-content">
           <div className="dashboard-header-row">
             <div>
-              <h1 className="dashboard-title">Test Management Dashboard</h1>
+              <h1 className="dashboard-title">Dashboard</h1>
               <p className="dashboard-sub">View, edit, create and publish tests</p>
             </div>
 

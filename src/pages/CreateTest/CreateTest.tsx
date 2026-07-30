@@ -203,7 +203,7 @@ export const CreateTest: React.FC = () => {
 
         <main className="page-content">
           <div className="breadcrumb-bar">
-            <span>Test Creation</span> / <span>Create Test</span> / <span className="active-breadcrumb">{testTypeTab}</span>
+            <span>Test Creation</span> / <span>Create Test</span> / <span className="active-breadcrumb">{testTypeTab ? "Chapter Wise"  : testTypeTab}</span>
           </div>
 
           <div className="form-card">
@@ -320,7 +320,7 @@ export const CreateTest: React.FC = () => {
 
               <div className="marking-scheme-section">
                 <span className="section-subtitle">Marking Scheme:</span>
-
+                <div style={{display: "flex", gap: "25px"}}>
                 <div className="marking-inputs-grid">
                   <div className="small-input-group">
                     <label className="small-label">Wrong Answer</label>
@@ -351,15 +351,18 @@ export const CreateTest: React.FC = () => {
                       onChange={(e) => setCorrectMarks(Number(e.target.value))}
                     />
                   </div>
+                </div>
 
+                <div className="marking-inputs-grid">
                   <div className="form-group">
                     <label className="small-label">No of Questions</label>
                     <input
                       type="number"
                       className="form-input"
-                      placeholder="Ex:250 Marks"
+                      placeholder="Ex: 10 Ques"
                       value={noOfQuestions}
                       onChange={(e) => setNoOfQuestions(e.target.value ? Number(e.target.value) : '')}
+                      style={{width: "270px"}}
                     />
                   </div>
 
@@ -371,8 +374,10 @@ export const CreateTest: React.FC = () => {
                       placeholder="Ex:250 Marks"
                       value={totalMarks}
                       onChange={(e) => setTotalMarks(e.target.value ? Number(e.target.value) : '')}
+                      style={{width: "270px"}}
                     />
                   </div>
+                </div>
                 </div>
               </div>
 

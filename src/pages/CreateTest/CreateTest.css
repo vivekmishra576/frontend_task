@@ -13,7 +13,6 @@
 .page-content {
   flex: 1;
   padding: 24px 36px;
-  max-width: 1300px;
 }
 
 .breadcrumb-bar {
@@ -123,7 +122,9 @@
   display: flex;
   align-items: center;
   gap: 28px;
+  width: 80%;
   height: 46px;
+  justify-content: space-between;
 }
 
 .radio-label {
@@ -158,9 +159,10 @@
 }
 
 .marking-inputs-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 49%;
 }
 
 .small-input-group {
@@ -222,8 +224,5 @@
 @media (max-width: 900px) {
   .form-row-2 {
     grid-template-columns: 1fr;
-  }
-  .marking-inputs-grid {
-    grid-template-columns: 1fr 1fr;
   }
 }

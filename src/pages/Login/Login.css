@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 20px;
 }
 
 .figma-login-card {
@@ -55,7 +55,7 @@
     height: 100%;
     background: #ffffff;
     border: 1px solid #dce6f6;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 48px 44px;
     box-shadow: none;
     display: flex;
@@ -76,8 +76,8 @@
 
 .login-heading {
   font-size: 1.65rem;
-  font-weight: 700;
-  color: #334155;
+  font-weight: 600;
+  color: #374151;
   margin: 0 0 6px 0;
   letter-spacing: -0.3px;
 }
@@ -111,9 +111,9 @@
 }
 
 .form-field-label {
-  font-size: 0.9rem;
+  font-size: 16;
   font-weight: 600;
-  color: #475569;
+  color: #374151;
   margin-bottom: 8px;
 }
 
@@ -162,21 +162,21 @@
 }
 
 .forgot-password-link {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #548af7;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1B5DEF;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .forgot-password-link:hover {
-  color: #3b6cd4;
+  color: #5988EF;
   text-decoration: underline;
 }
 
 .figma-login-btn {
   width: 100%;
-  background-color: #548af7;
+  background-color: #5988EF;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
@@ -191,7 +191,7 @@
 }
 
 .figma-login-btn:hover:not(:disabled) {
-  background-color: #4175e3;
+  background-color: #5988EF;
 }
 
 .figma-login-btn:disabled {

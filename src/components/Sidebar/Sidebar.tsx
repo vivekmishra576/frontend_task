@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { LayoutDashboard, PenTool, ClipboardList } from 'lucide-react';
+import { SquarePen, CalendarSearch ,TrendingUp } from 'lucide-react';
 import logoImage from '../../assests/logo.png';
 import './Sidebar.css';
 
@@ -24,7 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
           to="/dashboard"
           className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
         >
-          <LayoutDashboard size={18} strokeWidth={2} />
+          <TrendingUp size={18} strokeWidth={2} />
           <span>Dashboard</span>
         </NavLink>
 
@@ -32,12 +32,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
           to="/tests/create"
           className={`sidebar-item ${isTestCreationActive ? 'active' : ''}`}
         >
-          <PenTool size={18} strokeWidth={2} />
+          <SquarePen size={18} strokeWidth={2} />
           <span>Test Creation</span>
         </NavLink>
 
         <div className="sidebar-item disabled">
-          <ClipboardList size={18} strokeWidth={2} />
+          <CalendarSearch size={18} strokeWidth={2} />
           <span>Test Tracking</span>
         </div>
       </nav>

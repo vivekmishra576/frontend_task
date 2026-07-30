@@ -74,7 +74,7 @@ export const Login: React.FC = () => {
             <div className="login-brand-header">
               <img src={logoImage} alt="PrepRoute Logo" className="preproute-logo-img" />
             </div>
-            <h1 className="login-heading">Login</h1>
+            <h2 className="login-heading">Login</h2>
             <p className="login-subtext">Use your company provided Login credentials</p>
             {apiError && <div className="login-api-error">{apiError}</div>}
             <form onSubmit={handleSubmit} className="figma-login-form">
