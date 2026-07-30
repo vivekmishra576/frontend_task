@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Toast from '../../components/Toast/Toast';
+import MultiSelectDropdown from '../../components/MultiSelectDropdown/MultiSelectDropdown';
 import testService from '../../services/test';
 import { Subject, Topic, SubTopic, CreateTestPayload } from '../../types';
 import './CreateTest.css';
@@ -16,8 +17,8 @@ export const CreateTest: React.FC = () => {
 
   const [name, setName] = useState('');
   const [subject, setSubject] = useState('');
-  const [selectedTopic, setSelectedTopic] = useState('');
-  const [selectedSubTopic, setSelectedSubTopic] = useState('');
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+  const [selectedSubTopics, setSelectedSubTopics] = useState<string[]>([]);
   const [difficulty, setDifficulty] = useState<'Easy' | 'Medium' | 'Difficult'>('Easy');
   const [duration, setDuration] = useState<number | ''>('');
   const [correctMarks, setCorrectMarks] = useState<number>(5);
@@ -52,31 +53,28 @@ export const CreateTest: React.FC = () => {
             
             if (matchedSubject) {
               setSubject(matchedSubject.id);
-              
-              // Fetch topics using the subject ID
               const topics = await testService.getTopicsBySubject(matchedSubject.id);
               setTopicsList(topics);
               
-              // Find and set topic ID by matching topic name
               if (testData.topics && testData.topics.length > 0) {
-                const topicName = testData.topics[0];
-                const matchedTopic = topics.find(t => t.name === topicName);
+                const matchedTopicIds = testData.topics
+                  .map(topicName => topics.find(t => t.name === topicName)?.id)
+                  .filter(Boolean) as string[];
                 
-                if (matchedTopic) {
-                  setSelectedTopic(matchedTopic.id);
-                  
-                  // Fetch sub-topics using the topic ID
-                  const subTopics = await testService.getSubTopicsByTopic(matchedTopic.id);
-                  setSubTopicsList(subTopics);
-                  
-                  // Find and set sub-topic ID by matching sub-topic name
+                setSelectedTopics(matchedTopicIds);
+                if (matchedTopicIds.length > 0) {
+                  const allSubTopics: SubTopic[] = [];
+                  for (const topicId of matchedTopicIds) {
+                    const subTopics = await testService.getSubTopicsByTopic(topicId);
+                    allSubTopics.push(...subTopics);
+                  }
+                  setSubTopicsList(allSubTopics);
                   if (testData.sub_topics && testData.sub_topics.length > 0) {
-                    const subTopicName = testData.sub_topics[0];
-                    const matchedSubTopic = subTopics.find(st => st.name === subTopicName);
+                    const matchedSubTopicIds = testData.sub_topics
+                      .map(subTopicName => allSubTopics.find(st => st.name === subTopicName)?.id)
+                      .filter(Boolean) as string[];
                     
-                    if (matchedSubTopic) {
-                      setSelectedSubTopic(matchedSubTopic.id);
-                    }
+                    setSelectedSubTopics(matchedSubTopicIds);
                   }
                 }
               }
@@ -106,11 +104,15 @@ export const CreateTest: React.FC = () => {
   useEffect(() => {
     if (!subject) {
       setTopicsList([]);
-      setSelectedTopic('');
+      setSelectedTopics([]);
+      setSubTopicsList([]);
+      setSelectedSubTopics([]);
       return;
     }
     const fetchTopics = async () => {
       try {
+        setSelectedSubTopics([]);
+        setSubTopicsList([]);
         const topics = await testService.getTopicsBySubject(subject);
         setTopicsList(topics);
       } catch {
@@ -121,21 +123,25 @@ export const CreateTest: React.FC = () => {
   }, [subject]);
 
   useEffect(() => {
-    if (!selectedTopic) {
+    if (selectedTopics.length === 0) {
       setSubTopicsList([]);
-      setSelectedSubTopic('');
+      setSelectedSubTopics([]);
       return;
     }
     const fetchSubTopics = async () => {
       try {
-        const subTopics = await testService.getSubTopicsByTopic(selectedTopic);
-        setSubTopicsList(subTopics);
+        const allSubTopics: SubTopic[] = [];
+        for (const topicId of selectedTopics) {
+          const subTopics = await testService.getSubTopicsByTopic(topicId);
+          allSubTopics.push(...subTopics);
+        }
+        setSubTopicsList(allSubTopics);
       } catch {
         setSubTopicsList([]);
       }
     };
     fetchSubTopics();
-  }, [selectedTopic]);
+  }, [selectedTopics]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,8 +160,8 @@ export const CreateTest: React.FC = () => {
       name: name.trim(),
       type: testTypeTab.toLowerCase(),
       subject,
-      topics: selectedTopic ? [selectedTopic] : [],
-      sub_topics: selectedSubTopic ? [selectedSubTopic] : [],
+      topics: selectedTopics,
+      sub_topics: selectedSubTopics,
       correct_marks: Number(correctMarks),
       wrong_marks: Number(wrongMarks),
       unattempt_marks: Number(unattemptMarks),
@@ -178,8 +184,6 @@ export const CreateTest: React.FC = () => {
       }
 
       const testId = res?.id || id;
-      
-      // Show toast briefly before navigation
       setTimeout(() => {
         navigate(`/tests/${testId}/questions`);
       }, 1000);
@@ -255,36 +259,24 @@ export const CreateTest: React.FC = () => {
               <div className="form-row-2">
                 <div className="form-group">
                   <label className="form-label">Topic</label>
-                  <select
-                    className="form-select"
-                    value={selectedTopic}
-                    onChange={(e) => setSelectedTopic(e.target.value)}
+                  <MultiSelectDropdown
+                    options={topicsList}
+                    selectedIds={selectedTopics}
+                    onChange={setSelectedTopics}
+                    placeholder="Choose from Drop-down"
                     disabled={!subject}
-                  >
-                    <option value="">Choose from Drop-down</option>
-                    {topicsList.map((top) => (
-                      <option key={top.id} value={top.id}>
-                        {top.name}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">Sub Topic</label>
-                  <select
-                    className="form-select"
-                    value={selectedSubTopic}
-                    onChange={(e) => setSelectedSubTopic(e.target.value)}
-                    disabled={!selectedTopic}
-                  >
-                    <option value="">Choose from Drop-down</option>
-                    {subTopicsList.map((subTop) => (
-                      <option key={subTop.id} value={subTop.id}>
-                        {subTop.name}
-                      </option>
-                    ))}
-                  </select>
+                  <MultiSelectDropdown
+                    options={subTopicsList}
+                    selectedIds={selectedSubTopics}
+                    onChange={setSelectedSubTopics}
+                    placeholder="Choose from Drop-down"
+                    disabled={selectedTopics.length === 0}
+                  />
                 </div>
               </div>
 
