@@ -285,6 +285,7 @@
   border-color: #a7f3d0;
   background-color: #f0fdf4;
   color: #047857;
+  cursor: pointer;
 }
 
 .drawer-q-item.empty-q {
@@ -298,4 +299,29 @@
   height: 8px;
   border-radius: 50%;
   background-color: #cbd5e1;
+}
+
+.drawer-q-list {
+  max-height: calc(15 * 44px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.drawer-q-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.drawer-q-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.drawer-q-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.drawer-q-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
