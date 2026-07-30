@@ -55,9 +55,9 @@ export const Navbar: React.FC<NavbarProps> = ({ showLogo = false }) => {
   return (
     <header className="header-navbar">
       <div className="header-left">
-        {showLogo && (
+        {/* {showLogo && (
           <img src={logoImage} alt="PrepRoute Logo" className="header-logo" />
-        )}
+        )} */}
       </div>
 
       <div className="header-right">

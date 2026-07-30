@@ -13,7 +13,9 @@ import {
   Award,
   Calendar,
   ChevronLeft,
-  ChevronRight
+  ChevronDown,
+  ChevronsRight,
+  ChevronsLeft
 } from 'lucide-react';
 import './Preview.css';
 
@@ -94,7 +96,7 @@ export const Preview: React.FC = () => {
             className="toggle-drawer-btn"
             onClick={() => setIsDrawerOpen(!isDrawerOpen)}
           >
-            {isDrawerOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+            {isDrawerOpen ? <ChevronsLeft size={16} /> : <ChevronsRight size={16} />}
           </button>
         </div>
 
@@ -109,7 +111,7 @@ export const Preview: React.FC = () => {
                     <CheckCircle2 size={14} color="#10b981" />
                     <span>Question {idx + 1}</span>
                   </div>
-                  <ChevronRight size={14} color="#94a3b8" />
+                  <ChevronsRight size={14} color="#94a3b8" />
                 </div>
               ))}
             </div>
@@ -217,7 +219,7 @@ export const Preview: React.FC = () => {
                   <input
                     type="date"
                     className="form-input"
-                    placeholder="Select Date"
+                    placeholder="Select End Date"
                     value={scheduleDate}
                     onChange={(e) => setScheduleDate(e.target.value)}
                   />
@@ -237,7 +239,7 @@ export const Preview: React.FC = () => {
                       </option>
                     ))}
                   </select>
-                  <Clock size={16} className="picker-icon" color="#94a3b8" />
+                  <ChevronDown size={16} className="picker-icon" color="#94a3b8" />
                 </div>
               </div>
             </div>
@@ -292,7 +294,7 @@ export const Preview: React.FC = () => {
                     </option>
                   ))}
                 </select>
-                <Clock size={16} className="picker-icon" color="#94a3b8" />
+                <ChevronDown size={16} className="picker-icon" color="#94a3b8" />
               </div>
             </div>
           </div>

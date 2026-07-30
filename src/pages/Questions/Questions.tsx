@@ -8,8 +8,10 @@ import questionService from '../../services/question';
 import { Question } from '../../types';
 import {
   Trash2,
-  ChevronLeft,
+  ChevronsLeft,
+  ChevronsRight,
   ChevronRight,
+  ChevronLeft,
   Plus,
   Download,
   Edit2,
@@ -212,7 +214,7 @@ export const Questions: React.FC = () => {
             className="toggle-drawer-btn"
             onClick={() => setIsDrawerOpen(!isDrawerOpen)}
           >
-            {isDrawerOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+            {isDrawerOpen ? <ChevronsLeft  size={16} /> : <ChevronsRight  size={16} />}
           </button>
         </div>
 
@@ -241,7 +243,7 @@ export const Questions: React.FC = () => {
                       )}
                       <span>Question {idx + 1}</span>
                     </div>
-                    <ChevronRight size={14} color="#94a3b8" />
+                    <ChevronsRight size={14} color="#94a3b8" />
                   </div>
                 );
               })}
@@ -255,7 +257,7 @@ export const Questions: React.FC = () => {
         <main className="page-content">
           <div className="questions-page-top-bar">
             <div className="breadcrumb-bar">
-              <span>Test Creation</span> / <span>Create Test</span> / <span className="active-breadcrumb">Chapter Wise</span>
+              <span>Test Creation</span> / <span>Create Test</span> / <span className="active-breadcrumb">{testData?.type}</span>
             </div>
 
             <button

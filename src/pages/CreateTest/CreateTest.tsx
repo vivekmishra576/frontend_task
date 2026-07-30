@@ -203,12 +203,12 @@ export const CreateTest: React.FC = () => {
 
         <main className="page-content">
           <div className="breadcrumb-bar">
-            <span>Test Creation</span> / <span>Create Test</span> / <span className="active-breadcrumb">{testTypeTab ? "Chapter Wise"  : testTypeTab}</span>
+            <span>Test Creation</span> / <span>Create Test</span> / <span className="active-breadcrumb">{testTypeTab}</span>
           </div>
 
           <div className="form-card">
             <div className="tab-pill-bar">
-              {['chapterwise', 'pyq', 'mocktest'].map((tab) => (
+              {['chapterwise', 'pyq', 'mock_test'].map((tab) => (
                 <button
                   key={tab}
                   type="button"

@@ -19,7 +19,7 @@
 }
 
 .questions-drawer.closed {
-  width: 50px;
+  width: 150px;
 }
 
 .drawer-header {
@@ -238,9 +238,11 @@
 }
 
 .publish-tabs-bar {
-  display: flex;
-  border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 24px;
+    display: flex;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+    width: 305px;
+    border-radius: 10px;
 }
 
 .publish-tab-btn {
@@ -255,8 +257,9 @@
 }
 
 .publish-tab-btn.active {
-  color: #1e293b;
-  border-bottom-color: #4f46e5;
+    color: #1e293b;
+    background-color: #9faef321;
+    border-radius: 10px;
 }
 
 .live-until-section {
@@ -281,9 +284,8 @@
 .duration-radios-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 16px;
+  row-gap: 25px;
   column-gap: 40px;
-  max-width: 500px;
   margin-bottom: 24px;
 }
 
@@ -308,7 +310,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  max-width: 700px;
+  column-gap: 40px
 }
 
 .picker-input-wrapper {
